@@ -120,11 +120,21 @@
 /* — Celda del destello recursivo (acento ácido) — */
 .cell--spark { background: var(--acid); min-height: 9rem; }
 .spark-field { position: absolute; inset: 0; }
-.spark-field .spark { position: absolute; fill: var(--ink); transform-origin: center; }
-.spark--xl { width: 46%; top: 50%; left: 50%; translate: -50% -50%; opacity: 0.16; }
-.spark--md { width: 26%; top: 30%; left: 34%; translate: -50% -50%; opacity: 0.32; }
-.spark--sm { width: 15%; top: 62%; left: 64%; translate: -50% -50%; opacity: 0.6; }
-.spark--xs { width: 8%; top: 30%; left: 70%; translate: -50% -50%; }
+/* Capas concéntricas auto-similares (recursión: misma forma a distinta escala) */
+.spark-field .spark {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  translate: -50% -50%;
+  fill: var(--ink);
+  transform-origin: center;
+}
+.spark--a { width: 92%; opacity: 0.1; }
+.spark--b { width: 70%; opacity: 0.16; }
+.spark--c { width: 50%; opacity: 0.24; }
+.spark--d { width: 34%; opacity: 0.4; }
+.spark--e { width: 20%; opacity: 0.65; }
+.spark--f { width: 9%; opacity: 1; }
 
 @media (max-width: 860px) {
   .bento__grid {

@@ -23,7 +23,7 @@ export function renderHero() {
       <span class="hero__line hero__line--1" aria-hidden="true">${splitChars('Mihael')}</span>
 
       <figure class="hero__photo">
-        <img src="${BASE}mihael.png" alt="Retrato de ${profile.name}" width="1300" height="1426" decoding="async" fetchpriority="high" />
+        <img src="${BASE}mihael.png" alt="Retrato de ${profile.name}" width="1500" height="1598" decoding="async" fetchpriority="high" />
       </figure>
 
       <span class="hero__line hero__line--2" aria-hidden="true">${splitChars('Tejeda')}</span>

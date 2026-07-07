@@ -28,10 +28,7 @@ export function renderBento() {
 
         <article class="cell cell--spark" data-rev aria-hidden="true">
           <div class="spark-field">
-            ${spark('spark--xl')}
-            ${spark('spark--md')}
-            ${spark('spark--sm')}
-            ${spark('spark--xs')}
+            ${['a', 'b', 'c', 'd', 'e', 'f'].map((k) => spark('spark--' + k)).join('')}
           </div>
         </article>
 
@@ -113,9 +110,10 @@ export function initBento() {
     })
   }
 
-  // Destellos recursivos girando a distintas velocidades
+  // Destello recursivo: capas concéntricas auto-similares girando en
+  // sentidos alternos a distintas velocidades (patrón que se repite a escala).
   if (!reduce) {
-    const speeds = { xl: 26, md: -18, sm: 12, xs: -8 }
+    const speeds = { a: 64, b: -48, c: 36, d: -26, e: 18, f: -12 }
     Object.entries(speeds).forEach(([k, dur]) => {
       const el = section.querySelector('.spark--' + k)
       if (el) gsap.to(el, { rotate: dur > 0 ? 360 : -360, duration: Math.abs(dur), ease: 'none', repeat: -1 })
