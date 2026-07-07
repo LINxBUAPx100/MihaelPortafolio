@@ -68,7 +68,14 @@
   color: var(--acid-deep);
   -webkit-text-stroke-color: var(--acid-deep);
 }
-.marquee__spark { width: clamp(1.1rem, 0.8rem + 1vw, 1.8rem); fill: var(--acid-deep); flex-shrink: 0; }
+.marquee__spark {
+  width: clamp(1.1rem, 0.8rem + 1vw, 1.8rem);
+  fill: var(--acid-deep);
+  flex-shrink: 0;
+  transform-origin: center;
+  animation: marqueeSparkSpin 9s linear infinite;
+}
+@keyframes marqueeSparkSpin { to { rotate: 360deg; } }
 
 /* — Grilla de categorías — */
 .skills__grid {

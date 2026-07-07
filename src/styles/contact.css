@@ -59,6 +59,8 @@
 .contact__loc { color: var(--smoke); }
 
 .contact__riders {
+  position: relative;
+  overflow: hidden;
   display: inline-flex;
   align-items: center;
   gap: 0.6rem;
@@ -73,6 +75,20 @@
   transition: background 0.35s var(--ease-out), color 0.35s var(--ease-out);
   will-change: transform;
 }
+.contact__riders::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: 42%;
+  background: linear-gradient(100deg, transparent, color-mix(in srgb, var(--acid) 75%, transparent), transparent);
+  transform: translateX(-160%) skewX(-18deg);
+  animation: btnGleam 5.5s var(--ease-inout) infinite;
+  pointer-events: none;
+}
+.contact__riders:hover::after { animation-duration: 1.2s; }
+.contact__riders > * { position: relative; z-index: 1; }
 .contact__riders:hover { background: var(--acid); color: var(--ink); }
 .contact__riders svg { width: 1.1rem; height: 1.1rem; transition: transform 0.35s var(--ease-out); }
 .contact__riders:hover svg { transform: translate(3px, -3px); }

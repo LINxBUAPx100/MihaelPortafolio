@@ -52,7 +52,10 @@
   color: var(--ink);
   transition: color 0.4s var(--ease-out);
 }
-.footer__wordmark:hover { color: var(--acid-deep); }
+.footer__wordmark:hover {
+  color: var(--acid-deep);
+  text-shadow: 0 0 40px color-mix(in srgb, var(--acid-deep) 35%, transparent);
+}
 
 .footer__base {
   display: flex;

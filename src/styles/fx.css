@@ -1,0 +1,58 @@
+/* ============================================================
+   FX — microinteracciones y animaciones constantes
+   ============================================================ */
+
+/* — Barra de progreso de scroll — */
+.scroll-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  z-index: 200;
+  pointer-events: none;
+}
+.scroll-progress span {
+  display: block;
+  height: 100%;
+  background: var(--acid-deep);
+  transform: scaleX(0);
+  transform-origin: left;
+  will-change: transform;
+}
+
+/* — Onda del cursor al hacer clic — */
+.cursor-ripple {
+  position: fixed;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  border: 1.5px solid var(--acid-deep);
+  transform: translate(-50%, -50%) scale(0);
+  pointer-events: none;
+  z-index: 10001;
+  animation: cursorRipple 0.6s var(--ease-out) forwards;
+}
+@keyframes cursorRipple {
+  0% { transform: translate(-50%, -50%) scale(0); opacity: 0.9; }
+  100% { transform: translate(-50%, -50%) scale(6); opacity: 0; }
+}
+
+/* — Glow pulsante en palabras de acento (constante y sutil) — */
+.bento__title em,
+.exp__title em,
+.skills__title em,
+.edu__title em,
+.contact__title em {
+  animation: accentGlow 3.4s var(--ease-inout) infinite;
+}
+@keyframes accentGlow {
+  0%, 100% { text-shadow: 0 0 0 transparent; }
+  50% { text-shadow: 0 0 22px color-mix(in srgb, var(--acid-deep) 45%, transparent); }
+}
+
+/* — Barrido de luz reutilizable para botones — */
+@keyframes btnGleam {
+  0% { transform: translateX(-160%) skewX(-18deg); }
+  18%, 100% { transform: translateX(320%) skewX(-18deg); }
+}

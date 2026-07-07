@@ -17,6 +17,8 @@ import './styles/education.css'
 import './styles/contact.css'
 import './styles/footer.css'
 import './styles/loader.css'
+import './styles/ambient.css'
+import './styles/fx.css'
 
 import { initTheme } from './lib/theme.js'
 import { initSmoothScroll } from './lib/smoothScroll.js'
@@ -24,7 +26,9 @@ import { initCursor } from './lib/cursor.js'
 import { initMagnetic } from './lib/magnetic.js'
 import { initReveal } from './lib/reveal.js'
 import { initLoader } from './lib/loader.js'
+import { initScrollProgress } from './lib/scrollProgress.js'
 
+import { renderAmbient } from './components/ambient.js'
 import { renderNav, initNav } from './components/nav.js'
 import { renderHero, initHero, playHeroIntro } from './components/hero.js'
 import { renderBento, initBento } from './components/bento.js'
@@ -41,6 +45,8 @@ const app = document.querySelector('#app')
 
 // Estructura semántica de la página
 app.innerHTML = `
+  ${renderAmbient()}
+  <div class="scroll-progress" aria-hidden="true"><span data-progress></span></div>
   <div class="loader" data-loader>
     <div class="loader__inner">
       <span class="loader__count" data-loader-count>000</span>
@@ -72,6 +78,7 @@ initHero()
 initBento()
 initMagnetic()
 initReveal()
+initScrollProgress()
 
 // La cortina de entrada dispara la animación del hero al terminar.
 initLoader(playHeroIntro)

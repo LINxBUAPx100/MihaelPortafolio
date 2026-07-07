@@ -1,0 +1,32 @@
+/* ============================================================
+   AMBIENT — destellos de fondo a la deriva (movimiento constante)
+   ============================================================ */
+
+.ambient {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.ambient__spark {
+  position: absolute;
+  fill: var(--ink);
+  opacity: 0.05;
+  transform-origin: center;
+  will-change: transform;
+  animation: ambientDrift var(--d) ease-in-out var(--delay) infinite,
+    ambientSpin calc(var(--d) * 1.7) linear var(--delay) infinite;
+}
+
+@keyframes ambientDrift {
+  0%, 100% { translate: 0 0; }
+  50% { translate: 0 -22px; }
+}
+@keyframes ambientSpin {
+  to { rotate: calc(360deg * var(--dir)); }
+}
+
+/* El contenido va por encima de la capa ambiental. */
+#app { position: relative; z-index: 1; }

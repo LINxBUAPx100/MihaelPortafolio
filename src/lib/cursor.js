@@ -1,11 +1,24 @@
 // Cursor personalizado: punto sólido + anillo con retardo (efecto magnético).
-// Solo se activa en dispositivos con puntero fino (no táctiles).
+// Además, una onda ácida al hacer clic (funciona también en táctil).
 
 import { gsap } from 'gsap'
 
 export function initCursor() {
-  const fine = window.matchMedia('(hover: hover) and (pointer: fine)').matches
   const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+
+  // Onda al presionar — disponible en cualquier dispositivo.
+  if (!reduce) {
+    window.addEventListener('pointerdown', (e) => {
+      const r = document.createElement('div')
+      r.className = 'cursor-ripple'
+      r.style.left = e.clientX + 'px'
+      r.style.top = e.clientY + 'px'
+      document.body.appendChild(r)
+      r.addEventListener('animationend', () => r.remove(), { once: true })
+    })
+  }
+
+  const fine = window.matchMedia('(hover: hover) and (pointer: fine)').matches
   if (!fine) return
 
   const dot = document.createElement('div')

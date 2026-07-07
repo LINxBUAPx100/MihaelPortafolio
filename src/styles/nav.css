@@ -109,6 +109,8 @@
 
 /* — CTA Riders.media — */
 .nav__cta {
+  position: relative;
+  overflow: hidden;
   display: inline-flex;
   align-items: center;
   gap: 0.45rem;
@@ -123,6 +125,21 @@
   transition: background 0.3s var(--ease-out);
   will-change: transform;
 }
+/* Barrido de luz constante (y más rápido al hover) */
+.nav__cta::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: 42%;
+  background: linear-gradient(100deg, transparent, rgba(255, 255, 255, 0.7), transparent);
+  transform: translateX(-160%) skewX(-18deg);
+  animation: btnGleam 6s var(--ease-inout) infinite;
+  pointer-events: none;
+}
+.nav__cta:hover::after { animation-duration: 1.2s; }
+.nav__cta > * { position: relative; z-index: 1; }
 .nav__cta:hover { background: var(--acid-deep); }
 .nav__cta-arrow {
   width: 0.85rem;

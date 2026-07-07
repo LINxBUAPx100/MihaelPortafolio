@@ -51,6 +51,18 @@
   transition: background 0.4s var(--ease-out), transform 0.5s var(--ease-out);
 }
 .cell:hover { transform: translateY(-3px); }
+/* Barrido de luz ácida al hover */
+.cell::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(120deg, transparent 42%, color-mix(in srgb, var(--acid) 32%, transparent) 50%, transparent 58%);
+  transform: translateX(-115%);
+  transition: transform 0.85s var(--ease-out);
+  pointer-events: none;
+  z-index: 3;
+}
+.cell:hover::after { transform: translateX(115%); }
 
 /* — Celda resumen (ancla) — */
 .cell--sum { justify-content: space-between; gap: 1.5rem; }
