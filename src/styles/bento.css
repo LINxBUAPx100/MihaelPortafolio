@@ -101,6 +101,12 @@
   line-height: 1.35;
   margin-top: auto;
 }
+.cell--stat { transition: transform 0.5s var(--ease-out); }
+.cell--stat:hover .cell__num {
+  color: var(--acid-deep);
+  text-shadow: 0 0 30px color-mix(in srgb, var(--acid-deep) 30%, transparent);
+  transition: color 0.3s var(--ease-out), text-shadow 0.3s var(--ease-out);
+}
 
 /* — Idiomas — */
 .cell--lang { gap: 1.1rem; justify-content: flex-start; }

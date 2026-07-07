@@ -47,6 +47,7 @@
 }
 .exp__item:hover::before { transform: scaleX(1); }
 .exp__item:hover .exp__role { text-shadow: 0 0 26px color-mix(in srgb, var(--acid-deep) 22%, transparent); }
+.exp__item:hover .exp__idx { color: var(--acid-deep); }
 
 .exp__idx {
   grid-area: idx;

@@ -43,6 +43,12 @@
   transition: transform 0.5s var(--ease-out);
 }
 .contact__email:hover::after { transform: scaleX(1); }
+.contact__email {
+  transition: text-shadow 0.4s var(--ease-out);
+}
+.contact__email:hover {
+  text-shadow: 0 0 34px color-mix(in srgb, var(--acid-deep) 22%, transparent);
+}
 
 .contact__meta {
   display: flex;
