@@ -86,8 +86,8 @@
   right: 0;
   bottom: 80px;
   z-index: 2;
-  height: clamp(24rem, 28rem + 24vh, 48rem);
-  max-height: 82vh;
+  height: clamp(26rem, 30rem + 26vh, 52rem);
+  max-height: 88vh;
   display: flex;
   justify-content: center;
   pointer-events: none;
@@ -97,8 +97,10 @@
   height: 100%;
   width: auto;
   /* flex-shrink:0 evita que el centrado flex encoja la imagen (si no, se
-     achica y queda flotando pequeña en el centro con huecos). */
+     achica y queda flotando pequeña en el centro con huecos).
+     max-width:none anula el reset global para permitir el zoom en móvil. */
   flex-shrink: 0;
+  max-width: none;
   object-fit: contain;
   filter: drop-shadow(0 26px 44px color-mix(in srgb, var(--ink) 16%, transparent));
   /* Funde solo el borde inferior (el corte del torso) con el fondo. */
@@ -202,15 +204,15 @@
   .hero__line { line-height: 0.85; }
   .hero__foot { align-items: flex-end; bottom: 2.5vh; }
 
-  /* En móvil la foto se dimensiona por ANCHO (banda que rellena la pantalla)
-     y los textos la abrazan: Mihael detrás (arriba), Tejeda al frente (abajo). */
+  /* En móvil la foto se acerca (zoom): más grande que el ancho para llenar
+     pantalla; los textos la abrazan (Mihael detrás arriba, Tejeda al frente abajo). */
   .hero__photo {
     height: auto;
     max-height: none;
-    bottom: 29vh;
+    bottom: 16vh;
   }
-  .hero__photo img { width: 100%; height: auto; }
+  .hero__photo img { width: 142%; height: auto; }
 
-  .hero__line--1 { top: 22vh; }
-  .hero__line--2 { bottom: 25vh; }
+  .hero__line--1 { top: 15vh; }
+  .hero__line--2 { bottom: 13vh; }
 }
