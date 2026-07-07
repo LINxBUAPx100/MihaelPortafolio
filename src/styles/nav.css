@@ -4,7 +4,9 @@
 
 .nav {
   position: fixed;
-  top: 0;
+  /* Separación superior para que el nav no quede pegado al techo */
+  /* Aumentado ligeramente por petición del usuario */
+  top: clamp(0.75rem, 1.5vw, 1.75rem);
   left: 0;
   right: 0;
   z-index: 100;
@@ -99,6 +101,11 @@
 .nav__ico--sun { fill: currentColor; stroke: currentColor; display: none; }
 :root[data-theme='dark'] .nav__ico--moon { display: none; }
 :root[data-theme='dark'] .nav__ico--sun { display: block; }
+
+/* En modo oscuro, forzar que el texto interno del CTA use el color `--ink` */
+:root[data-theme='dark'] .nav__cta {
+  color: var(--ink);
+}
 
 /* — CTA Riders.media — */
 .nav__cta {

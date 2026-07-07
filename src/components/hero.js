@@ -23,7 +23,7 @@ export function renderHero() {
       <span class="hero__line hero__line--1" aria-hidden="true">${splitChars('Mihael')}</span>
 
       <figure class="hero__photo">
-        <img src="${BASE}mihael.png" alt="Retrato de ${profile.name}" width="1500" height="1601" decoding="async" fetchpriority="high" />
+        <img src="${BASE}mihael.png" alt="Retrato de ${profile.name}" width="1300" height="1426" decoding="async" fetchpriority="high" />
       </figure>
 
       <span class="hero__line hero__line--2" aria-hidden="true">${splitChars('Tejeda')}</span>
@@ -75,10 +75,12 @@ export function initHero() {
     gsap.to(spark, { rotate: 360, repeat: -1, duration: 22, ease: 'none' })
 
     // Parallax leve de la foto siguiendo el puntero.
-    const px = gsap.quickTo(photo, 'x', { duration: 0.8, ease: 'power3' })
+    // Nota: deshabilitamos el desplazamiento horizontal para mantener la
+    // foto siempre centrada horizontalmente. Solo aplicamos movimiento Y.
     const py = gsap.quickTo(photo, 'y', { duration: 0.8, ease: 'power3' })
     hero.addEventListener('pointermove', (e) => {
-      px((e.clientX / window.innerWidth - 0.5) * 26)
+      // Mantener X en 0 para que la foto conserve su centrado CSS
+      // y aplicar solo un leve movimiento vertical.
       py((e.clientY / window.innerHeight - 0.5) * 18)
     })
   }

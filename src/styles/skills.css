@@ -47,7 +47,6 @@
   from { transform: translateX(-50%); }
   to { transform: translateX(0); }
 }
-.marquee:hover .marquee__track { animation-play-state: paused; }
 
 .marquee__item {
   font-family: var(--font-display);
@@ -57,11 +56,17 @@
   letter-spacing: -0.03em;
   text-transform: uppercase;
   color: var(--ink);
+  transition: color 0.3s var(--ease-out);
 }
+.marquee__item:hover { color: var(--acid-deep); }
 /* En la fila alterna, texto en contorno para contraste neo-brutalista */
 .marquee--alt .marquee__item {
   color: transparent;
   -webkit-text-stroke: 1px var(--ink);
+}
+.marquee--alt .marquee__item:hover {
+  color: var(--acid-deep);
+  -webkit-text-stroke-color: var(--acid-deep);
 }
 .marquee__spark { width: clamp(1.1rem, 0.8rem + 1vw, 1.8rem); fill: var(--acid-deep); flex-shrink: 0; }
 
@@ -80,13 +85,15 @@
 .skillcat__list { list-style: none; display: flex; flex-direction: column; gap: 0.55rem; }
 .skillcat__item {
   position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
   width: fit-content;
   font-size: clamp(1.1rem, 1rem + 0.4vw, 1.35rem);
   font-weight: 500;
   letter-spacing: -0.01em;
   color: var(--ink-soft);
   transition: color 0.3s var(--ease-out), transform 0.3s var(--ease-out);
-  cursor: default;
 }
 .skillcat__item::before {
   content: '';
@@ -106,3 +113,12 @@
   transform: translateX(0.7rem);
 }
 .skillcat__item:hover::before { opacity: 1; transform: translateY(-50%) scale(1); }
+.skillcat__arrow {
+  width: 0.75rem;
+  height: 0.75rem;
+  color: var(--acid-deep);
+  opacity: 0;
+  transform: translate(-4px, 4px);
+  transition: opacity 0.3s var(--ease-out), transform 0.3s var(--ease-out);
+}
+.skillcat__item:hover .skillcat__arrow { opacity: 1; transform: none; }

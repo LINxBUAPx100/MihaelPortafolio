@@ -6,7 +6,7 @@ export const profile = {
   shortName: 'Mihael Tejeda',
   location: 'Puebla, Puebla · México',
   email: 'mihakengs@gmail.com',
-  phone: '998-460-5333',
+  phone: 'https://wa.me/529984605333?text=Hola%20Mihael%2C%20vengo%20de%20tu%20portafolio',
   ridersUrl: 'https://riders.media',
   roles: ['Desarrollador Web', 'Especialista en Innovación', 'Motion Grapher', 'Director Creativo', 'Gestor Multimedia', 'Profesional Multidisciplinario'],
   headline: 'Diseño sistemas que se mueven.',
@@ -40,7 +40,7 @@ export const experience = [
   {
     role: 'Marketing y Diseño',
     company: 'Red Aduanera',
-    period: '2023 — Actualidad',
+    period: '2023 — 2026',
     highlight: false,
     points: [
       'Producción de animaciones (motion graphics) para proyectos internos y externos.',
@@ -96,10 +96,6 @@ export const skills = [
   {
     group: 'Productividad',
     items: ['Adobe Suite', 'Office (avanzado)'],
-  },
-  {
-    group: 'Integración de IA',
-    items: ['Claude Pro', 'Gemini Pro', 'ChatGPT Plus'],
   },
 ]
 

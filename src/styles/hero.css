@@ -56,7 +56,14 @@
   white-space: nowrap;
 }
 .hero__line--1 { top: clamp(8rem, 6rem + 8vw, 12rem); z-index: 1; }
-.hero__line--2 { bottom: clamp(5rem, 3rem + 6vw, 8rem); z-index: 1; }
+.hero__line--2 {
+  bottom: clamp(5rem, 3rem + 6vw, 8rem);
+  /* Traer la segunda línea al frente y aplicar efecto negativo sobre la imagen */
+  z-index: 4;
+  color: #fff;
+  mix-blend-mode: difference;
+  -webkit-mix-blend-mode: difference;
+}
 
 /* Máscara por letra para el reveal */
 .char {
@@ -69,26 +76,49 @@
   will-change: transform;
 }
 
-/* — Retrato: blend multiply funde el blanco con el papel — */
+/* — Retrato: recorte transparente, dimensionado por ALTURA.
+   La base se apoya sobre "Tejeda" (que va al frente, z-index 3). — */
 .hero__photo {
   position: absolute;
   left: 50%;
-  bottom: clamp(6rem, 4rem + 6vw, 9rem);
+  /* Subimos la foto unos pocos píxeles desde la base */
+  bottom: 80px;
   transform: translateX(-50%);
+  transform-origin: center center;
   z-index: 2;
-  height: clamp(30rem, 40rem + 30vh, 62rem);
-  max-height: 94vh;
+  /* Reducimos ligeramente la altura para que la foto quede un poco más pequeña */
+  height: clamp(28rem, 38rem + 28vh, 58rem);
+  max-height: 92vh;
   will-change: transform;
 }
 .hero__photo img {
-  max-height: 100%;
-  height: auto;
+  height: 100%;
   width: auto;
   object-fit: contain;
-  object-position: center bottom;
   /* Recorte con transparencia: el retrato flota sobre el papel.
      Sombra muy sutil para dar profundidad y separarlo del wordmark. */
   filter: drop-shadow(0 26px 44px color-mix(in srgb, var(--ink) 16%, transparent));
+    /* Difuminado más marcado y suave: mantener 100% de opacidad hasta
+       ~70% y desvanecer progresivamente en la parte inferior para
+       evitar un corte seco (funde la base con el fondo). */
+    -webkit-mask-image: linear-gradient(to bottom,
+      rgba(0,0,0,1) 0%,
+      rgba(0,0,0,1) 70%,
+      rgba(0,0,0,0.95) 75%,
+      rgba(0,0,0,0.7) 82%,
+      rgba(0,0,0,0.4) 88%,
+      rgba(0,0,0,0.15) 94%,
+      rgba(0,0,0,0) 100%
+    );
+    mask-image: linear-gradient(to bottom,
+      rgba(0,0,0,1) 0%,
+      rgba(0,0,0,1) 70%,
+      rgba(0,0,0,0.95) 75%,
+      rgba(0,0,0,0.7) 82%,
+      rgba(0,0,0,0.4) 88%,
+      rgba(0,0,0,0.15) 94%,
+      rgba(0,0,0,0) 100%
+    );
 }
 
 /* — Fila inferior: rol rotativo + scroll cue — */
@@ -112,13 +142,16 @@
 .hero__roles-view {
   display: inline-block;
   overflow: hidden;
-  height: 1.3em;
+  /* Aumentamos la altura para evitar recortes en pantallas más grandes */
+  height: 2.2em;
 }
 .hero__role {
   display: inline-block;
   font-family: var(--font-body);
   font-weight: 500;
-  font-size: var(--step-1);
+  /* Ligeramente más grande para mejorar legibilidad y evitar recorte */
+  font-size: calc(var(--step-1) * 1.08);
+  line-height: 1.05;
   letter-spacing: -0.01em;
   color: var(--ink);
   will-change: transform;
@@ -159,6 +192,24 @@
   z-index: 4;
   fill: var(--acid-deep);
   transform-origin: center;
+  /* Animaciones: wiggle (rotación leve) y glow (resplandor) */
+  animation: wiggle 1.6s ease-in-out infinite, sparkGlow 2.4s ease-in-out infinite;
+}
+
+/* Wiggle: pequeña rotación y desplazamiento vertical para movimiento orgánico */
+@keyframes wiggle {
+  0% { transform: translateX(-50%) rotate(0deg) translateY(0); }
+  20% { transform: translateX(-50%) rotate(-6deg) translateY(-2%); }
+  50% { transform: translateX(-50%) rotate(0deg) translateY(0); }
+  80% { transform: translateX(-50%) rotate(6deg) translateY(-2%); }
+  100% { transform: translateX(-50%) rotate(0deg) translateY(0); }
+}
+
+/* Spark glow: animación del filtro para dar brillo pulsante */
+@keyframes sparkGlow {
+  0% { filter: drop-shadow(0 0 0 color-mix(in srgb, var(--acid-deep) 60%, transparent)); opacity: 0.9; }
+  50% { filter: drop-shadow(0 0 14px color-mix(in srgb, var(--acid-deep) 70%, transparent)); opacity: 1; }
+  100% { filter: drop-shadow(0 0 0 color-mix(in srgb, var(--acid-deep) 60%, transparent)); opacity: 0.9; }
 }
 
 @media (max-width: 640px) {

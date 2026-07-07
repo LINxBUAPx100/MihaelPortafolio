@@ -1,6 +1,11 @@
 import { profile } from '../data/content.js'
 
 export function renderContact() {
+  // profile.phone puede ser un número o un enlace directo (WhatsApp).
+  const isUrl = /^https?:/.test(profile.phone)
+  const phoneHref = isUrl ? profile.phone : `tel:+52${profile.phone.replace(/-/g, '')}`
+  const phoneLabel = isUrl ? 'WhatsApp' : profile.phone
+  const phoneAttrs = isUrl ? 'target="_blank" rel="noopener"' : ''
   return `
     <section id="contacto" class="contact">
       <span class="mono contact__idx" data-rev>(05) — Contacto</span>
@@ -11,7 +16,7 @@ export function renderContact() {
       </a>
 
       <div class="contact__meta" data-rev>
-        <a class="contact__link" href="tel:+52${profile.phone.replace(/-/g, '')}">${profile.phone}</a>
+        <a class="contact__link" href="${phoneHref}" ${phoneAttrs}>${phoneLabel}</a>
         <span class="contact__sep" aria-hidden="true"></span>
         <span class="contact__loc">${profile.location}</span>
       </div>

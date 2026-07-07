@@ -82,7 +82,10 @@ export function initNav() {
     end: 'max',
     onUpdate: (self) => {
       const y = self.scroll()
-      nav.classList.toggle('nav--solid', y > window.innerHeight * 0.55)
+      const isSolid = y > window.innerHeight * 0.55
+      nav.classList.toggle('nav--solid', isSolid)
+      // Añadir clase al root para que el contenido detrás del nav pueda recibir estilos
+      document.documentElement.classList.toggle('nav-overlay', isSolid)
       if (y > 260 && !document.documentElement.classList.contains('menu-open')) {
         nav.classList.toggle('nav--hidden', self.direction === 1)
       } else {
