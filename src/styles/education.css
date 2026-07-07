@@ -1,0 +1,83 @@
+/* ============================================================
+   FORMACIÓN — educación + certificaciones
+   ============================================================ */
+
+.edu__head {
+  display: flex;
+  flex-direction: column;
+  gap: 1.1rem;
+  margin-bottom: clamp(2rem, 1.5rem + 3vw, 3.5rem);
+}
+.edu__title {
+  font-size: var(--step-3);
+  line-height: 0.92;
+  letter-spacing: -0.03em;
+}
+.edu__title em { font-style: normal; color: var(--acid-deep); }
+
+.edu__cols {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr;
+  gap: clamp(2rem, 1rem + 4vw, 5rem);
+}
+.edu__label {
+  display: block;
+  padding-bottom: 1.2rem;
+  margin-bottom: 0.4rem;
+  border-bottom: 1px solid var(--line);
+}
+
+.edu__list { list-style: none; }
+.edu__row {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1.5rem;
+  padding-block: 1.15rem;
+  border-bottom: 1px solid var(--line);
+}
+.edu__name {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: clamp(1.15rem, 1rem + 0.6vw, 1.6rem);
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+}
+.edu__place { font-size: 0.9rem; color: var(--smoke); }
+.edu__info { display: flex; flex-direction: column; gap: 0.35rem; }
+
+.edu__status {
+  flex-shrink: 0;
+  font-family: var(--font-mono);
+  font-size: 0.66rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  padding: 0.3rem 0.7rem;
+  border-radius: 100px;
+}
+.edu__status.is-active { background: var(--acid); color: var(--ink); }
+.edu__status.is-done { color: var(--ink-soft); background: var(--paper-2); }
+.edu__status.is-muted { color: var(--smoke); background: transparent; }
+
+/* — Certificaciones — */
+.edu__list--certs { display: flex; flex-direction: column; gap: 1.1rem; margin-top: 0.4rem; }
+.edu__cert {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.8rem;
+  font-size: clamp(1rem, 0.95rem + 0.3vw, 1.2rem);
+  line-height: 1.4;
+  color: var(--ink-soft);
+}
+.edu__cert-mark {
+  flex-shrink: 0;
+  width: 8px;
+  height: 8px;
+  margin-top: 0.5em;
+  background: var(--acid-deep);
+  transform: rotate(45deg);
+}
+
+@media (max-width: 760px) {
+  .edu__cols { grid-template-columns: 1fr; gap: 3rem; }
+}

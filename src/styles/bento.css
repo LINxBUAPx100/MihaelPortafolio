@@ -1,0 +1,145 @@
+/* ============================================================
+   BENTO — cuadrícula asimétrica de perfil (superficies, sin bordes)
+   ============================================================ */
+
+.bento { padding-top: clamp(3rem, 2rem + 5vw, 6rem); }
+
+.bento__head {
+  display: flex;
+  flex-direction: column;
+  gap: 1.1rem;
+  margin-bottom: clamp(2rem, 1.5rem + 3vw, 3.5rem);
+}
+.bento__title {
+  font-size: var(--step-3);
+  line-height: 0.92;
+  letter-spacing: -0.03em;
+  max-width: 16ch;
+}
+.bento__title em {
+  font-style: normal;
+  color: var(--acid-deep);
+}
+
+/* — Grid — */
+.bento__grid {
+  display: grid;
+  gap: clamp(0.6rem, 0.4rem + 0.8vw, 1rem);
+  grid-template-columns: repeat(4, 1fr);
+  grid-auto-rows: minmax(9rem, auto);
+  grid-template-areas:
+    'sum sum spk yrs'
+    'sum sum lng lng'
+    'loc rol lng lng';
+}
+.cell--sum { grid-area: sum; }
+.cell--spark { grid-area: spk; }
+.cell--lang { grid-area: lng; }
+.cell--loc { grid-area: loc; }
+.cell--stat:not(.cell--stat-alt) { grid-area: yrs; } /* stat disciplinas */
+.cell--stat-alt { grid-area: rol; }
+
+/* — Celda base: superficie suave, sin borde — */
+.cell {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  padding: clamp(1.25rem, 1rem + 1vw, 1.9rem);
+  background: var(--paper-2);
+  border-radius: 18px;
+  overflow: hidden;
+  transition: background 0.4s var(--ease-out), transform 0.5s var(--ease-out);
+}
+.cell:hover { transform: translateY(-3px); }
+
+/* — Celda resumen (ancla) — */
+.cell--sum { justify-content: space-between; gap: 1.5rem; }
+.cell__lead {
+  font-size: clamp(1.05rem, 0.95rem + 0.5vw, 1.4rem);
+  line-height: 1.42;
+  color: var(--ink);
+  letter-spacing: -0.01em;
+  text-wrap: pretty;
+}
+.cell__inline {
+  align-self: flex-start;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--ink);
+  padding-bottom: 3px;
+  border-bottom: 1px solid var(--acid-deep);
+}
+.cell__inline:hover { color: var(--acid-deep); }
+
+/* — Stats — */
+.cell--stat { justify-content: space-between; gap: 0.6rem; }
+.cell__num {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: clamp(3.2rem, 2rem + 6vw, 5.5rem);
+  line-height: 0.85;
+  letter-spacing: -0.04em;
+  color: var(--ink);
+}
+.cell__note {
+  font-size: 0.82rem;
+  color: var(--smoke);
+  line-height: 1.35;
+  margin-top: auto;
+}
+
+/* — Idiomas — */
+.cell--lang { gap: 1.1rem; justify-content: flex-start; }
+.lang { list-style: none; display: flex; flex-direction: column; gap: 1.05rem; margin-top: 0.4rem; }
+.lang__meta { display: flex; align-items: baseline; justify-content: space-between; gap: 1rem; margin-bottom: 0.5rem; }
+.lang__name { font-size: 1.05rem; font-weight: 500; }
+.lang__lvl { font-size: 0.68rem; }
+.lang__track {
+  height: 3px;
+  background: color-mix(in srgb, var(--ink) 12%, transparent);
+  border-radius: 2px;
+  overflow: hidden;
+}
+.lang__fill {
+  display: block;
+  height: 100%;
+  width: 100%;
+  transform-origin: left;
+  transform: scaleX(0);
+  background: var(--ink);
+  border-radius: 2px;
+}
+
+/* — Ubicación — */
+.cell--loc { justify-content: space-between; gap: 0.8rem; }
+.cell__place { font-family: var(--font-display); font-weight: 500; font-size: 1.5rem; line-height: 1; letter-spacing: -0.02em; }
+.cell__coords { margin-top: auto; }
+
+/* — Celda del destello recursivo (acento ácido) — */
+.cell--spark { background: var(--acid); min-height: 9rem; }
+.spark-field { position: absolute; inset: 0; }
+.spark-field .spark { position: absolute; fill: var(--ink); transform-origin: center; }
+.spark--xl { width: 46%; top: 50%; left: 50%; translate: -50% -50%; opacity: 0.16; }
+.spark--md { width: 26%; top: 30%; left: 34%; translate: -50% -50%; opacity: 0.32; }
+.spark--sm { width: 15%; top: 62%; left: 64%; translate: -50% -50%; opacity: 0.6; }
+.spark--xs { width: 8%; top: 30%; left: 70%; translate: -50% -50%; }
+
+@media (max-width: 860px) {
+  .bento__grid {
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-areas:
+      'sum sum'
+      'spk yrs'
+      'lng lng'
+      'loc rol';
+  }
+}
+@media (max-width: 520px) {
+  .bento__grid {
+    grid-template-columns: 1fr;
+    grid-template-areas: 'sum' 'spk' 'yrs' 'rol' 'lng' 'loc';
+  }
+  .cell--spark { min-height: 7rem; }
+}

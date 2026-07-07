@@ -1,0 +1,168 @@
+/* ============================================================
+   HERO — wordmark cinético + retrato integrado + cursor
+   ============================================================ */
+
+.hero {
+  position: relative;
+  min-height: 100svh;
+  overflow: hidden;
+  padding-inline: var(--gutter);
+}
+
+/* — Fila superior: ubicación / disponibilidad — */
+.hero__meta {
+  position: absolute;
+  top: clamp(4.5rem, 4rem + 4vw, 7rem);
+  left: var(--gutter);
+  right: var(--gutter);
+  z-index: 4;
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+}
+.hero__status {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5em;
+}
+.hero__status i {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--acid-deep);
+  box-shadow: 0 0 0 0 var(--acid-deep);
+  animation: pulse 2.4s var(--ease-inout) infinite;
+}
+@keyframes pulse {
+  0% { box-shadow: 0 0 0 0 color-mix(in srgb, var(--acid-deep) 60%, transparent); }
+  70% { box-shadow: 0 0 0 9px transparent; }
+  100% { box-shadow: 0 0 0 0 transparent; }
+}
+
+/* — Wordmark gigante en dos líneas, la foto se intercala entre ellas — */
+.hero__line {
+  position: absolute;
+  left: 0;
+  right: 0;
+  text-align: center;
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: var(--step-mega);
+  line-height: 0.8;
+  letter-spacing: -0.03em;
+  text-transform: uppercase;
+  color: var(--ink);
+  user-select: none;
+  white-space: nowrap;
+}
+.hero__line--1 { top: clamp(8rem, 6rem + 8vw, 12rem); z-index: 1; }
+.hero__line--2 { bottom: clamp(5rem, 3rem + 6vw, 8rem); z-index: 1; }
+
+/* Máscara por letra para el reveal */
+.char {
+  display: inline-block;
+  overflow: hidden;
+  vertical-align: bottom;
+}
+.char__in {
+  display: inline-block;
+  will-change: transform;
+}
+
+/* — Retrato: blend multiply funde el blanco con el papel — */
+.hero__photo {
+  position: absolute;
+  left: 50%;
+  bottom: clamp(6rem, 4rem + 6vw, 9rem);
+  transform: translateX(-50%);
+  z-index: 2;
+  height: clamp(30rem, 40rem + 30vh, 62rem);
+  max-height: 94vh;
+  will-change: transform;
+}
+.hero__photo img {
+  max-height: 100%;
+  height: auto;
+  width: auto;
+  object-fit: contain;
+  object-position: center bottom;
+  /* Recorte con transparencia: el retrato flota sobre el papel.
+     Sombra muy sutil para dar profundidad y separarlo del wordmark. */
+  filter: drop-shadow(0 26px 44px color-mix(in srgb, var(--ink) 16%, transparent));
+}
+
+/* — Fila inferior: rol rotativo + scroll cue — */
+.hero__foot {
+  position: absolute;
+  bottom: clamp(1.5rem, 1rem + 2vw, 2.5rem);
+  left: var(--gutter);
+  right: var(--gutter);
+  z-index: 5;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 1rem;
+}
+.hero__roles {
+  display: flex;
+  align-items: baseline;
+  gap: 0.9rem;
+}
+.hero__roles-idx { color: var(--ember); }
+.hero__roles-view {
+  display: inline-block;
+  overflow: hidden;
+  height: 1.3em;
+}
+.hero__role {
+  display: inline-block;
+  font-family: var(--font-body);
+  font-weight: 500;
+  font-size: var(--step-1);
+  letter-spacing: -0.01em;
+  color: var(--ink);
+  will-change: transform;
+}
+
+.hero__scroll {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.7rem;
+}
+.hero__scroll-track {
+  position: relative;
+  width: 2px;
+  height: 44px;
+  background: color-mix(in srgb, var(--ink) 18%, transparent);
+  overflow: hidden;
+}
+.hero__scroll-thumb {
+  position: absolute;
+  inset-inline: 0;
+  top: 0;
+  height: 40%;
+  background: var(--ink);
+  animation: scrollThumb 1.8s var(--ease-inout) infinite;
+}
+@keyframes scrollThumb {
+  0% { transform: translateY(-100%); }
+  100% { transform: translateY(250%); }
+}
+
+/* — Destello recursivo (motivo de marca) — */
+.hero__spark {
+  position: absolute;
+  top: clamp(4.5rem, 4rem + 4vw, 7rem);
+  left: 50%;
+  transform: translateX(-50%);
+  width: clamp(1.4rem, 1rem + 1.5vw, 2.2rem);
+  z-index: 4;
+  fill: var(--acid-deep);
+  transform-origin: center;
+}
+
+@media (max-width: 640px) {
+  .hero__meta { flex-direction: column; gap: 0.4rem; }
+  .hero__line { line-height: 0.85; }
+  .hero__foot { align-items: flex-end; }
+}

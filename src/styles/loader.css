@@ -1,0 +1,62 @@
+/* ============================================================
+   LOADER — cortina de entrada
+   ============================================================ */
+
+.loader {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  background: var(--paper);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: var(--gutter);
+}
+
+.loader__inner {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 1.4rem;
+}
+.loader__count {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: clamp(4rem, 2rem + 12vw, 12rem);
+  line-height: 0.8;
+  letter-spacing: -0.04em;
+  color: var(--ink);
+}
+.loader__label {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-family: var(--font-mono);
+  font-size: var(--step--1);
+  letter-spacing: 0.03em;
+  color: var(--smoke);
+  padding-bottom: 0.9rem;
+  white-space: nowrap;
+}
+.loader__spark {
+  width: clamp(1.4rem, 1rem + 1.5vw, 2.4rem);
+  fill: var(--acid-deep);
+  animation: loaderSpin 4s linear infinite;
+}
+@keyframes loaderSpin { to { transform: rotate(360deg); } }
+
+.loader__bar {
+  height: 2px;
+  width: 100%;
+  background: color-mix(in srgb, var(--ink) 12%, transparent);
+  overflow: hidden;
+}
+.loader__bar span {
+  display: block;
+  height: 100%;
+  width: 100%;
+  background: var(--ink);
+  transform: scaleX(0);
+  transform-origin: left;
+}

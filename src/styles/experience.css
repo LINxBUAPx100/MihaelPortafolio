@@ -1,0 +1,114 @@
+/* ============================================================
+   EXPERIENCIA — trayectoria editorial, revelada al scroll
+   ============================================================ */
+
+.exp__head {
+  display: flex;
+  flex-direction: column;
+  gap: 1.1rem;
+  margin-bottom: clamp(2.5rem, 2rem + 3vw, 4.5rem);
+}
+.exp__title {
+  font-size: var(--step-3);
+  line-height: 0.92;
+  letter-spacing: -0.03em;
+}
+.exp__title em { font-style: normal; color: var(--acid-deep); }
+
+.exp__list { list-style: none; }
+
+/* — Fila de rol — */
+.exp__item {
+  display: grid;
+  grid-template-columns: 4rem 1fr auto;
+  grid-template-areas:
+    'idx role   period'
+    'idx company company'
+    'idx points points';
+  column-gap: clamp(1rem, 0.5rem + 2vw, 2.5rem);
+  padding-block: clamp(2rem, 1.5rem + 2vw, 3.25rem);
+  border-top: 1px solid var(--line);
+  transition: border-color 0.4s var(--ease-out);
+}
+.exp__item:hover { border-color: color-mix(in srgb, var(--ink) 35%, transparent); }
+
+.exp__idx {
+  grid-area: idx;
+  display: flex;
+  align-items: flex-start;
+  gap: 0.4rem;
+  padding-top: 0.5rem;
+  color: var(--smoke);
+}
+.exp__spark { width: 0.85rem; height: 0.85rem; fill: var(--acid-deep); }
+
+.exp__role {
+  grid-area: role;
+  font-size: clamp(1.6rem, 1.2rem + 2.2vw, 3rem);
+  line-height: 1;
+  letter-spacing: -0.025em;
+  color: var(--ink);
+  transition: transform 0.45s var(--ease-out), color 0.3s var(--ease-out);
+}
+.exp__item:hover .exp__role { transform: translateX(0.6rem); }
+.is-featured .exp__role { color: var(--acid-deep); }
+
+.exp__period {
+  grid-area: period;
+  padding-top: 0.6rem;
+  white-space: nowrap;
+  color: var(--smoke);
+}
+
+.exp__company {
+  grid-area: company;
+  margin-top: 0.7rem;
+  font-family: var(--font-body);
+  font-weight: 500;
+  font-size: 1.05rem;
+  letter-spacing: 0.01em;
+  color: var(--ink-soft);
+}
+.is-featured .exp__company { color: var(--ink); }
+
+.exp__points {
+  grid-area: points;
+  list-style: none;
+  margin-top: 1.4rem;
+  display: grid;
+  gap: 0.7rem;
+  max-width: 62ch;
+}
+.exp__points li {
+  position: relative;
+  padding-left: 1.6rem;
+  font-size: clamp(0.95rem, 0.9rem + 0.3vw, 1.1rem);
+  line-height: 1.5;
+  color: var(--ink-soft);
+  text-wrap: pretty;
+}
+.exp__points li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0.7em;
+  width: 0.8rem;
+  height: 1px;
+  background: var(--acid-deep);
+}
+
+@media (max-width: 640px) {
+  .exp__item {
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      'idx'
+      'role'
+      'period'
+      'company'
+      'points';
+    row-gap: 0.2rem;
+  }
+  .exp__idx { padding-top: 0; margin-bottom: 0.6rem; }
+  .exp__period { padding-top: 0.3rem; }
+  .exp__item:hover .exp__role { transform: none; }
+}
