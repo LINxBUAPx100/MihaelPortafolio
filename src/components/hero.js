@@ -15,7 +15,7 @@ export function renderHero() {
     <section id="top" class="hero">
       <div class="hero__meta">
         <span class="mono">${profile.location}</span>
-        <span class="mono hero__status"><i></i>Disponible para proyectos</span>
+        <span class="mono hero__status"><i></i>Siempre en linea</span>
       </div>
 
       <h1 class="sr-only">${profile.name} — ${profile.roles.join(', ')}</h1>
@@ -23,7 +23,7 @@ export function renderHero() {
       <span class="hero__line hero__line--1" aria-hidden="true">${splitChars('Mihael')}</span>
 
       <figure class="hero__photo">
-        <img src="${BASE}mihael.png" alt="Retrato de ${profile.name}" width="1500" height="1598" decoding="async" fetchpriority="high" />
+        <img src="${BASE}mihael.png" alt="Retrato de ${profile.name}" width="1200" height="1171" decoding="async" fetchpriority="high" />
       </figure>
 
       <span class="hero__line hero__line--2" aria-hidden="true">${splitChars('Tejeda')}</span>
