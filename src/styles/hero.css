@@ -80,15 +80,17 @@
    La base se apoya sobre "Tejeda" (que va al frente, z-index 3). — */
 .hero__photo {
   position: absolute;
-  left: 50%;
-  /* Subimos la foto unos pocos píxeles desde la base */
+  /* Ancho completo + centrado flex: la imagen queda centrada a cualquier
+     tamaño sin desbordarse (evita que se "separe" en móvil). */
+  left: 0;
+  right: 0;
   bottom: 80px;
-  transform: translateX(-50%);
-  transform-origin: center center;
   z-index: 2;
-  /* Reducimos ligeramente la altura para que la foto quede un poco más pequeña */
   height: clamp(28rem, 38rem + 28vh, 58rem);
   max-height: 92vh;
+  display: flex;
+  justify-content: center;
+  pointer-events: none;
   will-change: transform;
 }
 .hero__photo img {
