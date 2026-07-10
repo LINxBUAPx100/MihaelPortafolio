@@ -15,7 +15,6 @@ export function renderHero() {
     <section id="top" class="hero">
       <div class="hero__meta">
         <span class="mono">${profile.location}</span>
-        <span class="mono hero__status"><i></i>Siempre en linea</span>
       </div>
 
       <h1 class="sr-only">${profile.name} — ${profile.roles.join(', ')}</h1>
